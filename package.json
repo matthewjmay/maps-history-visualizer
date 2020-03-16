@@ -1,0 +1,11 @@
+{
+  "name": "maps-history-visualizer",
+  "version": "1.0.0",
+  "description": "maps-history-visualizer",
+  "main": "index.js",
+  "author": "matthewjmay <matthewmay@fb.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
