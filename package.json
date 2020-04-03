@@ -19,5 +19,9 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "dependencies": {
+    "dropzone": "^5.7.0",
+    "token.js": "0.0.1"
   }
 }
