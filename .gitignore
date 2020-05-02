@@ -78,3 +78,5 @@ typings/
 dist/
 .cache/
 
+sample_data/
+

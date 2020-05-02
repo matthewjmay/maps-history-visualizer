@@ -1,5 +1,21 @@
-html, body {
+html,
+body {
   height: 100%;
 }
 
-#mapid { height: 100%; }
+#dropzone {
+  height: 100%;
+}
+#mapid {
+  height: 100%;
+}
+
+.controls {
+  position: absolute;
+  left: 8px;
+  top: 30px;
+}
+
+.newpathcontainer {
+  color: black;
+}

@@ -10,6 +10,8 @@
     "build": "parcel build index.html"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
     "husky": "^4.2.3",
     "parcel-bundler": "^1.12.4",
     "prettier": "2.0.2",
@@ -22,6 +24,7 @@
   },
   "dependencies": {
     "dropzone": "^5.7.0",
-    "token.js": "0.0.1"
+    "oboe": "^2.1.5",
+    "token.js": "^0.0.1"
   }
 }

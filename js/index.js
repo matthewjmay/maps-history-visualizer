@@ -1,11 +1,19 @@
 import Dropzone from "dropzone";
+import Oboe from "oboe";
 
-import TOKEN from "token.js";
+import TOKEN from "./token.js";
+import {
+  chunkFileBlocking,
+  getLatLng,
+  isValidLocation,
+  colorGenerator,
+} from "./utils.js";
 
 const locationHistories = [];
+const colorGen = colorGenerator();
 
-const initializeMap = (startLocation, token) => {
-  const map = L.map("mapid").setView(startPos, 13);
+const createMap = (token) => {
+  const map = L.map("mapid").setView([0, 0], 2);
 
   L.tileLayer(
     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
@@ -22,17 +30,55 @@ const initializeMap = (startLocation, token) => {
   return map;
 };
 
-const addLatLngs = (map, latLngs, color) => {
-  const polyline = L.polyline(latLngs, { color: color }).addTo(map);
+const map = createMap(TOKEN);
+
+const addLatLngs = (latLngs, color) => {
+  const polyline = L.polyline(latLngs, { color: "blue" }).addTo(map);
   map.fitBounds(polyline.getBounds());
 };
 
-const onFileUpload = (file) => {
+const onFileProgress = (fractionParsed) => {
+  console.log(`progress: ${(100 * fractionParsed).toFixed(2)}%`);
+};
+
+const getLatLngParser = () => {
+  const latLngs = [];
+  const oboeInstance = new Oboe();
+  oboeInstance.node("locations.*", (location) => {
+    if (isValidLocation(location)) {
+      latLngs.push(getLatLng(location));
+    }
+    return Oboe.drop;
+  });
+  return {
+    parser: oboeInstance,
+    latLngs,
+  };
+};
+
+const onFileUpload = async (file) => {
   console.log(`Parsing ${file.name}`);
+  const fileSize = file.size;
+  let bytesProcessed = 0;
+  const chunkSizeBytes = 1024 * 1024;
+  const { parser, latLngs } = getLatLngParser();
+
+  await chunkFileBlocking(file, chunkSizeBytes, (chunk, size) => {
+    bytesProcessed += size;
+    parser.emit("data", chunk);
+    onFileProgress(bytesProcessed / file.size);
+  });
+  addLatLngs(latLngs, colorGen.next());
 };
 
-const initDropZone = () => {
-  const dropzone = new Dropzone("div#dropzone", { url: "/" });
+const initializeDropzone = () => {
+  const dropzone = new Dropzone("div#dropzone", {
+    url: "/",
+    accept: (file, _) => {
+      onFileUpload(file);
+    },
+  });
 };
 
+initializeDropzone();
 // addLatLngs(map, latLngs, "blue");
