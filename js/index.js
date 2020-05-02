@@ -30,7 +30,7 @@ const createMap = (token) => {
   return map;
 };
 
-const map = createMap(TOKEN);
+// const map = createMap(TOKEN);
 
 const addLatLngs = (latLngs, color) => {
   const polyline = L.polyline(latLngs, { color: "blue" }).addTo(map);
