@@ -71,7 +71,6 @@ export const fetchLatLngs = async (file, onProgressCb) => {
 
   await chunkFileBlocking(file, chunkSizeBytes, (chunk, size) => {
     bytesProcessed += size;
-    console.log("chunked");
     parser.emit("data", chunk);
     onProgressCb(bytesProcessed / file.size);
   });

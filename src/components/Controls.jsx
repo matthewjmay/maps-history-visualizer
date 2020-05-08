@@ -9,11 +9,12 @@ class Controls extends React.Component {
   }
 
   showOpenFileDlg = () => {
+    console.log("open");
     this.inputOpenFileRef.current.click();
   };
 
   handleFileSelect = (evt) => {
-    event.preventDefault();
+    evt.preventDefault();
     this.props.onAddNewHistory(this.inputOpenFileRef.current.files[0]);
     evt.target.value = null;
   };
@@ -21,9 +22,9 @@ class Controls extends React.Component {
   render() {
     const {
       historyControls,
-      onShownOnMapChanged,
-      onColorChanged,
-      onNameChanged,
+      onHistoryToggleShownOnMap,
+      onHistoryColorChanged,
+      onHistoryLabelChanged,
     } = this.props;
 
     return (
@@ -45,9 +46,15 @@ class Controls extends React.Component {
               label={label}
               isShownOnMap={isShownOnMap}
               color={color}
-              onShownOnMapChanged={onShownOnMapChanged}
-              onColorChanged={onColorChanged}
-              onLabelChanged={onNameChanged}
+              onToggled={() => {
+                onHistoryToggleShownOnMap(id);
+              }}
+              onColorChanged={(val) => {
+                onHistoryColorChanged(val, id);
+              }}
+              onLabelChanged={(val) => {
+                onHistoryLabelChanged(val, id);
+              }}
             />
           )
         )}

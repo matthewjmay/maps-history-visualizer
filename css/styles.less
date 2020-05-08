@@ -1,0 +1,136 @@
+html,
+body {
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#dropzone {
+  height: 100%;
+}
+#app {
+  height: 100%;
+}
+
+.controls {
+  font-family: Roboto, Arial, sans-serif;
+  position: absolute;
+  left: 15px;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  border-radius: 8px;
+  z-index: 999;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  color: black;
+}
+
+.newpathcontainer {
+  color: black;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  height: 38px;
+  border-radius: 8px 8px 0px 0px;
+  transition-duration: 0.3s;
+  background-color: white;
+  font-size: 12px;
+  border: none;
+  border-bottom: 1px solid rgb(186, 186, 186);
+
+  &:last-child {
+    border-radius: 8px;
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: #efefef;
+  }
+}
+
+.pathcontrols {
+  &:last-child {
+    border-radius: 0px 0px 8px 8px;
+  }
+  overflow: hidden;
+}
+
+.pathconfig {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 8px;
+  background-color: white;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  height: 21px;
+  min-width: 34px;
+  cursor: pointer;
+  border-radius: 20px;
+  transition: background-color 0.2s ease 0s;
+  background-color: #bed5fb;
+  opacity: 0.8;
+
+  &.checked {
+    background-color: #0060ff;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.slider-inner {
+  width: 17px;
+  height: 17px;
+  box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 1px 0px;
+  background-color: white;
+  transition: transform 0.2s ease 0s;
+  transform: translateX(2px);
+  cursor: pointer;
+  border-radius: 100%;
+
+  &.checked {
+    transform: translateX(15px);
+  }
+}
+
+.history-label {
+  flex-grow: 1;
+  font-size: 14px;
+  margin: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s ease-in-out;
+  color: black;
+
+  &.editable {
+    &:hover {
+      transform: scale(1.025);
+      color: #00348a;
+    }
+  }
+}
+
+.progress-bar-wrapper {
+  position: relative;
+}
+.progress-bar {
+  background-color: green;
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+}
+
+.color-chooser {
+  width: 25px;
+  height: 25px;
+}

@@ -23,61 +23,109 @@ class App extends Component {
 
   handleStartUploadNewHistory = async (file) => {
     console.log(`Uploading new file: ${file.name}`);
-    const newHistoryId = this.state.nextId;
 
     // update UI to show we started upload
-    this.setState({
-      ...this.state,
+    this.setState((prevState, props) => {
+      const newHistoryId = prevState.nextId;
+      fetchLatLngs(file, (progress) => {
+        this.handleFileUploadProgress(progress, newHistoryId);
+      }).then((latLngs) => {
+        this.handleDoneUploadNewHistory(latLngs, newHistoryId);
+      });
+
+      return {
+        historySettings: {
+          ...prevState.historySettings,
+          [newHistoryId]: {
+            loadingProgress: 0,
+            color: getNextColor.next().value,
+            label: file.name,
+            isShownOnMap: true,
+          },
+        },
+        historyIds: [...prevState.historyIds, newHistoryId],
+        nextId: newHistoryId + 1,
+      };
+    });
+  };
+
+  handleFileUploadProgress = (loadingProgress, historyId) => {
+    console.log(
+      `Made progress of ${(100 * loadingProgress).toFixed(2)}% on ${historyId}`
+    );
+    this.setState((prevState, props) => ({
       historySettings: {
-        ...this.state.historySettings,
-        [newHistoryId]: {
-          loadingProgress: 0,
-          color: getNextColor.next().value,
-          label: file.name,
-          isShownOnMap: true,
+        ...prevState.historySettings,
+        [historyId]: {
+          ...prevState.historySettings[historyId],
+          loadingProgress,
         },
       },
-      historyIds: [...this.state.historyIds, newHistoryId],
-      nextId: newHistoryId + 1,
+    }));
+  };
+
+  handleHistoryLabelChanged = (label, historyId) => {
+    console.log(`Changing id ${historyId} to label ${label}`);
+    this.setState((prevState, props) => ({
+      historySettings: {
+        ...prevState.historySettings,
+        [historyId]: {
+          ...prevState.historySettings[historyId],
+          label,
+        },
+      },
+    }));
+  };
+
+  handleToggleHistoryShownOnMap = (historyId) => {
+    this.setState((prevState, props) => {
+      console.log(
+        `Changing id ${historyId} to ${
+          !prevState.historySettings[historyId].isShownOnMap
+            ? "visible"
+            : "hidden"
+        }`
+      );
+
+      return {
+        historySettings: {
+          ...prevState.historySettings,
+          [historyId]: {
+            ...prevState.historySettings[historyId],
+            isShownOnMap: !prevState.historySettings[historyId].isShownOnMap,
+          },
+        },
+      };
     });
-
-    const latLngs = await fetchLatLngs(file, (progress) => {
-      this.handleFileUploadProgress(progress, newHistoryId);
-    });
-    this.handleDoneUploadNewHistory(latLngs, newHistoryId);
   };
 
-  handleFileUploadProgress = (progress, id) => {
-    console.log(`Made progress of ${(100 * progress).toFixed(2)}% on ${id}`);
-  };
-
-  handleHistoryLabelChanged = (label, id) => {
-    console.log(`Changing id ${id} to label ${label}`);
-  };
-
-  handleHistoryShownOnMapChanged = (isShown, id) => {
-    console.log(`Changing id ${id} to ${isShown ? "visible" : "hidden"}`);
-  };
-
-  handleHistoryColorChanged = (isShown, id) => {
-    console.log(`Changing id ${id} to ${isShown ? "visible" : "hidden"}`);
+  handleHistoryColorChanged = (color, historyId) => {
+    console.log(`Changing id ${historyId} to color ${color}`);
+    this.setState((prevState, props) => ({
+      historySettings: {
+        ...prevState.historySettings,
+        [historyId]: {
+          ...prevState.historySettings[historyId],
+          color,
+        },
+      },
+    }));
   };
 
   handleDoneUploadNewHistory = (latLngs, historyId) => {
-    this.setState({
-      ...this.state,
+    this.setState((prevState, props) => ({
       historySettings: {
-        ...this.state.historySettings,
+        ...prevState.historySettings,
         [historyId]: {
-          ...this.state.historySettings[historyId],
-          loadingProgress: 100,
+          ...prevState.historySettings[historyId],
+          loadingProgress: 1,
         },
       },
       latLngs: {
-        ...this.state.latLngs,
+        ...prevState.latLngs,
         [historyId]: latLngs,
       },
-    });
+    }));
   };
 
   render() {
@@ -86,7 +134,12 @@ class App extends Component {
       <>
         <MapContainer
           polylines={historyIds
-            .filter((id) => latLngs[id])
+            .filter(
+              (id) =>
+                historySettings[id] &&
+                historySettings[id].isShownOnMap &&
+                latLngs[id]
+            )
             .map((id) => ({
               id,
               latLngs: latLngs[id],
@@ -100,7 +153,7 @@ class App extends Component {
           }))}
           onAddNewHistory={this.handleStartUploadNewHistory}
           onHistoryLabelChanged={this.handleHistoryLabelChanged}
-          onHistoryShownOnMapChanged={this.handleHistoryShownOnMapChanged}
+          onHistoryToggleShownOnMap={this.handleToggleHistoryShownOnMap}
           onHistoryColorChanged={this.handleHistoryColorChanged}
         />
       </>
