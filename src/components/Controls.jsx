@@ -1,5 +1,7 @@
 import React from "react";
 
+import { throttle } from "../utils.js";
+
 import PathControl from "./PathControls";
 
 class Controls extends React.Component {
@@ -8,10 +10,9 @@ class Controls extends React.Component {
     this.inputOpenFileRef = React.createRef();
   }
 
-  showOpenFileDlg = () => {
-    console.log("open");
+  showOpenFileDlg = throttle(() => {
     this.inputOpenFileRef.current.click();
-  };
+  }, 500);
 
   handleFileSelect = (evt) => {
     evt.preventDefault();

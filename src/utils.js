@@ -77,6 +77,19 @@ export const fetchLatLngs = async (file, onProgressCb) => {
   return latLngs;
 };
 
+export const throttle = (callback, limit) => {
+  var wait = false;
+  return function () {
+    if (!wait) {
+      callback.call();
+      wait = true;
+      setTimeout(() => {
+        wait = false;
+      }, limit);
+    }
+  };
+};
+
 export function* colorGenerator() {
   const colorList = [
     "#0000ff",

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import {
   chunkFileBlocking,
@@ -13,7 +13,7 @@ import Controls from "./Controls";
 
 const getNextColor = colorGenerator();
 
-class App extends Component {
+class App extends React.Component {
   state = {
     historyIds: [],
     latLngs: {},
