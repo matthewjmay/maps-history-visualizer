@@ -50044,8 +50044,8 @@ var _react = _interopRequireDefault(require("react"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var HistoryLabel = /*#__PURE__*/function (_React$Component) {
-  (0, _inherits2.default)(HistoryLabel, _React$Component);
+var HistoryLabel = /*#__PURE__*/function (_React$PureComponent) {
+  (0, _inherits2.default)(HistoryLabel, _React$PureComponent);
 
   function HistoryLabel(props) {
     var _this;
@@ -50103,7 +50103,7 @@ var HistoryLabel = /*#__PURE__*/function (_React$Component) {
     }
   }]);
   return HistoryLabel;
-}(_react.default.Component);
+}(_react.default.PureComponent);
 
 var _default = HistoryLabel;
 exports.default = _default;
@@ -50192,8 +50192,8 @@ var _PathControls = _interopRequireDefault(require("./PathControls"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Controls = /*#__PURE__*/function (_React$Component) {
-  (0, _inherits2.default)(Controls, _React$Component);
+var Controls = /*#__PURE__*/function (_React$PureComponent) {
+  (0, _inherits2.default)(Controls, _React$PureComponent);
 
   function Controls(props) {
     var _this;
@@ -50262,7 +50262,7 @@ var Controls = /*#__PURE__*/function (_React$Component) {
     }
   }]);
   return Controls;
-}(_react.default.Component);
+}(_react.default.PureComponent);
 
 var _default = Controls;
 exports.default = _default;
