@@ -1,0 +1,156 @@
+html,
+body {
+  height: 100%;
+}
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+#dropzone {
+  height: 100%;
+}
+#app {
+  height: 100%;
+}
+.controls {
+  font-family: Roboto, Arial, sans-serif;
+  position: absolute;
+  left: 15px;
+  top: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 250px;
+  border-radius: 8px;
+  z-index: 999;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: black;
+}
+.newpathcontainer {
+  color: black;
+  text-align: center;
+  cursor: pointer;
+  height: 38px;
+  border-radius: 8px 8px 0px 0px;
+  padding: 0px;
+  -webkit-transition-duration: 0.3s;
+       -o-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  background-color: white;
+  font-size: 12px;
+  border: none;
+  border-bottom: 1px solid #bababa;
+}
+.newpathcontainer:last-child {
+  border-radius: 8px;
+  border-bottom: none;
+}
+.newpathcontainer:hover {
+  background-color: #efefef;
+}
+.pathcontrols {
+  overflow: hidden;
+}
+.pathcontrols:last-child {
+  border-radius: 0px 0px 8px 8px;
+}
+.pathconfig {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 40px;
+  padding: 8px;
+  background-color: white;
+}
+.slider-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 21px;
+  min-width: 34px;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-transition: background-color 0.2s ease 0s;
+  -o-transition: background-color 0.2s ease 0s;
+  transition: background-color 0.2s ease 0s;
+  background-color: #bed5fb;
+  opacity: 0.8;
+}
+.slider-container.checked {
+  background-color: #0060ff;
+}
+.slider-container:hover {
+  opacity: 1;
+}
+.slider-inner {
+  width: 17px;
+  height: 17px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 1px 0px;
+          box-shadow: rgba(0, 0, 0, 0.13) 0px 0px 1px 0px;
+  background-color: white;
+  -webkit-transition: -webkit-transform 0.2s ease 0s;
+  transition: -webkit-transform 0.2s ease 0s;
+  -o-transition: transform 0.2s ease 0s;
+  transition: transform 0.2s ease 0s;
+  transition: transform 0.2s ease 0s, -webkit-transform 0.2s ease 0s;
+  -webkit-transform: translateX(2px);
+      -ms-transform: translateX(2px);
+          transform: translateX(2px);
+  cursor: pointer;
+  border-radius: 100%;
+}
+.slider-inner.checked {
+  -webkit-transform: translateX(15px);
+      -ms-transform: translateX(15px);
+          transform: translateX(15px);
+}
+.history-label {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  font-size: 14px;
+  margin: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  -webkit-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: black;
+}
+.history-label.editable:hover {
+  -webkit-transform: scale(1.025);
+      -ms-transform: scale(1.025);
+          transform: scale(1.025);
+  color: #00348a;
+}
+.progress-bar-wrapper {
+  position: relative;
+}
+.progress-bar {
+  background-color: green;
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+}
+.color-chooser {
+  width: 25px;
+  height: 25px;
+}
+
+
+/*# sourceMappingURL=/styles.7fb21729.css.map */
