@@ -49863,19 +49863,23 @@ var _possibleConstructorReturn2 = _interopRequireDefault(require("@babel/runtime
 
 var _getPrototypeOf2 = _interopRequireDefault(require("@babel/runtime/helpers/getPrototypeOf"));
 
+var _assertThisInitialized2 = _interopRequireDefault(require("@babel/runtime/helpers/assertThisInitialized"));
+
 var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits"));
 
-var _react = _interopRequireWildcard(require("react"));
+var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
+
+var _react = _interopRequireDefault(require("react"));
 
 var _leaflet = _interopRequireDefault(require("leaflet"));
 
 var _reactLeaflet = require("react-leaflet");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 // Map bounds
 // Allow scroll over the international date line,
@@ -49886,14 +49890,24 @@ var corner2 = _leaflet.default.latLng(90, 200);
 
 var bounds = _leaflet.default.latLngBounds(corner1, corner2);
 
-var MapContainer = /*#__PURE__*/function (_PureComponent) {
-  (0, _inherits2.default)(MapContainer, _PureComponent);
+var MapContainer = /*#__PURE__*/function (_React$PureComponent) {
+  (0, _inherits2.default)(MapContainer, _React$PureComponent);
 
   function MapContainer(props) {
     var _this;
 
     (0, _classCallCheck2.default)(this, MapContainer);
     _this = (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(MapContainer).call(this, props));
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "shouldFitNewBounds", function (prevPolylines) {
+      var prevLatLngsById = prevPolylines.reduce(function (map, poly) {
+        return _objectSpread({}, map, (0, _defineProperty2.default)({}, poly.id, poly.latLngs));
+      }, {});
+      return _this.props.polylines.some(function (_ref) {
+        var id = _ref.id,
+            latLngs = _ref.latLngs;
+        return !prevLatLngsById[id] || prevLatLngsById[id] !== latLngs;
+      });
+    });
     _this.mapRef = _react.default.createRef();
     _this.groupRef = _react.default.createRef();
     return _this;
@@ -49901,10 +49915,11 @@ var MapContainer = /*#__PURE__*/function (_PureComponent) {
 
   (0, _createClass2.default)(MapContainer, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var numPolylines = this.props.polylines.length; // don't fit bounds if we removed polylines, otherwise it's confusing
-
-      if (numPolylines > 0 && numPolylines >= prevProps.polylines.length) {
+    value: function componentDidUpdate() {
+      if (this.props.polylines.some(function (_ref2) {
+        var isFirstShow = _ref2.isFirstShow;
+        return isFirstShow;
+      })) {
         var map = this.mapRef.current.leafletElement;
         var group = this.groupRef.current.leafletElement;
         map.fitBounds(group.getBounds());
@@ -49930,10 +49945,10 @@ var MapContainer = /*#__PURE__*/function (_PureComponent) {
           maxZoom: 18
         }), /*#__PURE__*/_react.default.createElement(_reactLeaflet.FeatureGroup, {
           ref: this.groupRef
-        }, this.props.polylines.map(function (_ref) {
-          var latLngs = _ref.latLngs,
-              color = _ref.color,
-              id = _ref.id;
+        }, this.props.polylines.map(function (_ref3) {
+          var latLngs = _ref3.latLngs,
+              color = _ref3.color,
+              id = _ref3.id;
           return (/*#__PURE__*/_react.default.createElement(_reactLeaflet.Polyline, {
               key: id,
               color: color,
@@ -49945,10 +49960,10 @@ var MapContainer = /*#__PURE__*/function (_PureComponent) {
     }
   }]);
   return MapContainer;
-}(_react.PureComponent);
+}(_react.default.PureComponent);
 
 exports.default = MapContainer;
-},{"@babel/runtime/helpers/classCallCheck":"node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/inherits":"node_modules/@babel/runtime/helpers/inherits.js","react":"node_modules/react/index.js","leaflet":"node_modules/leaflet/dist/leaflet-src.js","react-leaflet":"node_modules/react-leaflet/es/index.js"}],"node_modules/classnames/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/classCallCheck":"node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/assertThisInitialized":"node_modules/@babel/runtime/helpers/assertThisInitialized.js","@babel/runtime/helpers/inherits":"node_modules/@babel/runtime/helpers/inherits.js","@babel/runtime/helpers/defineProperty":"node_modules/@babel/runtime/helpers/defineProperty.js","react":"node_modules/react/index.js","leaflet":"node_modules/leaflet/dist/leaflet-src.js","react-leaflet":"node_modules/react-leaflet/es/index.js"}],"node_modules/classnames/index.js":[function(require,module,exports) {
 var define;
 /*!
   Copyright (c) 2017 Jed Watson.
@@ -50402,10 +50417,29 @@ var App = /*#__PURE__*/function (_React$Component) {
       _this.setState(function (prevState, props) {
         return {
           historySettings: _objectSpread({}, prevState.historySettings, (0, _defineProperty2.default)({}, historyId, _objectSpread({}, prevState.historySettings[historyId], {
-            loadingProgress: 1
+            loadingProgress: 1,
+            isFirstShow: true
           }))),
           latLngs: _objectSpread({}, prevState.latLngs, (0, _defineProperty2.default)({}, historyId, latLngs))
         };
+      }, function () {
+        _this.setState(function (prevState, props) {
+          return {
+            historySettings: _objectSpread({}, prevState.historySettings, (0, _defineProperty2.default)({}, historyId, _objectSpread({}, prevState.historySettings[historyId], {
+              loadingProgress: 1,
+              isFirstShow: false
+            })))
+          };
+        });
+      });
+    });
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "getShownIds", function () {
+      var _this$state = _this.state,
+          historyIds = _this$state.historyIds,
+          latLngs = _this$state.latLngs,
+          historySettings = _this$state.historySettings;
+      return historyIds.filter(function (id) {
+        return historySettings[id] && historySettings[id].isShownOnMap && latLngs[id];
       });
     });
     return _this;
@@ -50414,18 +50448,17 @@ var App = /*#__PURE__*/function (_React$Component) {
   (0, _createClass2.default)(App, [{
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          historyIds = _this$state.historyIds,
-          latLngs = _this$state.latLngs,
-          historySettings = _this$state.historySettings;
+      var _this$state2 = this.state,
+          historyIds = _this$state2.historyIds,
+          latLngs = _this$state2.latLngs,
+          historySettings = _this$state2.historySettings;
       return (/*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement(_MapContainer.default, {
-          polylines: historyIds.filter(function (id) {
-            return historySettings[id] && historySettings[id].isShownOnMap && latLngs[id];
-          }).map(function (id) {
+          polylines: this.getShownIds().map(function (id) {
             return {
               id: id,
               latLngs: latLngs[id],
-              color: historySettings[id].color
+              color: historySettings[id].color,
+              isFirstShow: historySettings[id].isFirstShow
             };
           })
         }), /*#__PURE__*/_react.default.createElement(_Controls.default, {
@@ -50487,7 +50520,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59942" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60448" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
