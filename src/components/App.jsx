@@ -113,38 +113,56 @@ class App extends React.Component {
   };
 
   handleDoneUploadNewHistory = (latLngs, historyId) => {
-    this.setState((prevState, props) => ({
-      historySettings: {
-        ...prevState.historySettings,
-        [historyId]: {
-          ...prevState.historySettings[historyId],
-          loadingProgress: 1,
+    this.setState(
+      (prevState, props) => ({
+        historySettings: {
+          ...prevState.historySettings,
+          [historyId]: {
+            ...prevState.historySettings[historyId],
+            loadingProgress: 1,
+            isFirstShow: true,
+          },
         },
-      },
-      latLngs: {
-        ...prevState.latLngs,
-        [historyId]: latLngs,
-      },
-    }));
+        latLngs: {
+          ...prevState.latLngs,
+          [historyId]: latLngs,
+        },
+      }),
+      () => {
+        this.setState((prevState, props) => ({
+          historySettings: {
+            ...prevState.historySettings,
+            [historyId]: {
+              ...prevState.historySettings[historyId],
+              loadingProgress: 1,
+              isFirstShow: false,
+            },
+          },
+        }));
+      }
+    );
+  };
+
+  getShownIds = () => {
+    const { historyIds, latLngs, historySettings } = this.state;
+    return historyIds.filter(
+      (id) =>
+        historySettings[id] && historySettings[id].isShownOnMap && latLngs[id]
+    );
   };
 
   render() {
     const { historyIds, latLngs, historySettings } = this.state;
+
     return (
       <>
         <MapContainer
-          polylines={historyIds
-            .filter(
-              (id) =>
-                historySettings[id] &&
-                historySettings[id].isShownOnMap &&
-                latLngs[id]
-            )
-            .map((id) => ({
-              id,
-              latLngs: latLngs[id],
-              color: historySettings[id].color,
-            }))}
+          polylines={this.getShownIds().map((id) => ({
+            id,
+            latLngs: latLngs[id],
+            color: historySettings[id].color,
+            isFirstShow: historySettings[id].isFirstShow,
+          }))}
         />
         <Controls
           historyControls={historyIds.map((id) => ({

@@ -4,7 +4,7 @@ import { throttle } from "../utils.js";
 
 import PathControl from "./PathControls";
 
-class Controls extends React.Component {
+class Controls extends React.PureComponent {
   constructor(props) {
     super(props);
     this.inputOpenFileRef = React.createRef();

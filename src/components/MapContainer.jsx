@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import Leaflet from "leaflet";
 import { Map, TileLayer, Polyline, FeatureGroup } from "react-leaflet";
 
@@ -9,22 +9,32 @@ const corner1 = Leaflet.latLng(-90, -200);
 const corner2 = Leaflet.latLng(90, 200);
 const bounds = Leaflet.latLngBounds(corner1, corner2);
 
-export default class MapContainer extends PureComponent {
+export default class MapContainer extends React.PureComponent {
   constructor(props) {
     super(props);
     this.mapRef = React.createRef();
     this.groupRef = React.createRef();
   }
 
-  componentDidUpdate(prevProps) {
-    const numPolylines = this.props.polylines.length;
-    // don't fit bounds if we removed polylines, otherwise it's confusing
-    if (numPolylines > 0 && numPolylines >= prevProps.polylines.length) {
+  shouldFitNewBounds = (prevPolylines) => {
+    const prevLatLngsById = prevPolylines.reduce(
+      (map, poly) => ({ ...map, [poly.id]: poly.latLngs }),
+      {}
+    );
+    return this.props.polylines.some(
+      ({ id, latLngs }) =>
+        !prevLatLngsById[id] || prevLatLngsById[id] !== latLngs
+    );
+  };
+
+  componentDidUpdate() {
+    if (this.props.polylines.some(({ isFirstShow }) => isFirstShow)) {
       const map = this.mapRef.current.leafletElement;
       const group = this.groupRef.current.leafletElement;
       map.fitBounds(group.getBounds());
     }
   }
+
   render() {
     return (
       <Map

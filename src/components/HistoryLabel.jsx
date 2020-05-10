@@ -1,6 +1,6 @@
 import React from "react";
 
-class HistoryLabel extends React.Component {
+class HistoryLabel extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
