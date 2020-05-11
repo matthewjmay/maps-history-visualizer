@@ -50844,14 +50844,17 @@ var App = /*#__PURE__*/function (_React$Component) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 if ("indexedDB" in window) {
-                  _context5.next = 3;
+                  _context5.next = 4;
                   break;
                 }
 
                 console.log("Browser does not support IndexedDB, no caching will be done");
+                this.setState({
+                  doneLoading: true
+                });
                 return _context5.abrupt("return");
 
-              case 3:
+              case 4:
                 this.db = (0, _idb.openDB)("maps-history-visualizer", 3, {
                   upgrade: function upgrade(db) {
                     if (!db.objectStoreNames.contains("historyIds")) {
@@ -50867,27 +50870,30 @@ var App = /*#__PURE__*/function (_React$Component) {
                     }
                   }
                 });
-                _context5.next = 6;
+                _context5.next = 7;
                 return this.db;
 
-              case 6:
+              case 7:
                 db = _context5.sent;
                 tx = db.transaction(["historyIds", "historySettings", "latLngs"], "readonly");
                 idStore = tx.objectStore("historyIds");
-                _context5.next = 11;
+                _context5.next = 12;
                 return idStore.getAll();
 
-              case 11:
+              case 12:
                 ids = _context5.sent;
 
                 if (!(ids.length === 0)) {
-                  _context5.next = 14;
+                  _context5.next = 16;
                   break;
                 }
 
+                this.setState({
+                  doneLoading: true
+                });
                 return _context5.abrupt("return");
 
-              case 14:
+              case 16:
                 this.setState({
                   nextId: Math.max.apply(Math, (0, _toConsumableArray2.default)(ids)) + 1
                 });
@@ -50901,7 +50907,7 @@ var App = /*#__PURE__*/function (_React$Component) {
                     latLngsPromise: latLngsStore.get(id)
                   };
                 });
-                _context5.next = 20;
+                _context5.next = 22;
                 return Promise.all(idData.map( /*#__PURE__*/function () {
                   var _ref4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(_ref5) {
                     var id, settingsPromise, latLngsPromise, settings, latLngs;
@@ -50942,12 +50948,12 @@ var App = /*#__PURE__*/function (_React$Component) {
                   };
                 }()));
 
-              case 20:
+              case 22:
                 this.setState({
                   doneLoading: true
                 });
 
-              case 21:
+              case 23:
               case "end":
                 return _context5.stop();
             }
@@ -51036,7 +51042,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50612" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58204" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
