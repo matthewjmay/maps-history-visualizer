@@ -28285,7 +28285,66 @@ if ("development" === 'production') {
 } else {
   module.exports = require('./cjs/react-dom.development.js');
 }
-},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
+},{"./cjs/react-dom.development.js":"node_modules/react-dom/cjs/react-dom.development.js"}],"node_modules/@babel/runtime/helpers/arrayLikeToArray.js":[function(require,module,exports) {
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+module.exports = _arrayLikeToArray;
+},{}],"node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
+var arrayLikeToArray = require("./arrayLikeToArray");
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) return arrayLikeToArray(arr);
+}
+
+module.exports = _arrayWithoutHoles;
+},{"./arrayLikeToArray":"node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"node_modules/@babel/runtime/helpers/iterableToArray.js":[function(require,module,exports) {
+function _iterableToArray(iter) {
+  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+},{}],"node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":[function(require,module,exports) {
+var arrayLikeToArray = require("./arrayLikeToArray");
+
+function _unsupportedIterableToArray(o, minLen) {
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  var n = Object.prototype.toString.call(o).slice(8, -1);
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return Array.from(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+module.exports = _unsupportedIterableToArray;
+},{"./arrayLikeToArray":"node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"node_modules/@babel/runtime/helpers/nonIterableSpread.js":[function(require,module,exports) {
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+module.exports = _nonIterableSpread;
+},{}],"node_modules/@babel/runtime/helpers/toConsumableArray.js":[function(require,module,exports) {
+var arrayWithoutHoles = require("./arrayWithoutHoles");
+
+var iterableToArray = require("./iterableToArray");
+
+var unsupportedIterableToArray = require("./unsupportedIterableToArray");
+
+var nonIterableSpread = require("./nonIterableSpread");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+},{"./arrayWithoutHoles":"node_modules/@babel/runtime/helpers/arrayWithoutHoles.js","./iterableToArray":"node_modules/@babel/runtime/helpers/iterableToArray.js","./unsupportedIterableToArray":"node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableSpread":"node_modules/@babel/runtime/helpers/nonIterableSpread.js"}],"node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -29019,66 +29078,7 @@ try {
 },{}],"node_modules/@babel/runtime/regenerator/index.js":[function(require,module,exports) {
 module.exports = require("regenerator-runtime");
 
-},{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/@babel/runtime/helpers/arrayLikeToArray.js":[function(require,module,exports) {
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-module.exports = _arrayLikeToArray;
-},{}],"node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":[function(require,module,exports) {
-var arrayLikeToArray = require("./arrayLikeToArray");
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) return arrayLikeToArray(arr);
-}
-
-module.exports = _arrayWithoutHoles;
-},{"./arrayLikeToArray":"node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"node_modules/@babel/runtime/helpers/iterableToArray.js":[function(require,module,exports) {
-function _iterableToArray(iter) {
-  if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
-},{}],"node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js":[function(require,module,exports) {
-var arrayLikeToArray = require("./arrayLikeToArray");
-
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-  var n = Object.prototype.toString.call(o).slice(8, -1);
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return Array.from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
-}
-
-module.exports = _unsupportedIterableToArray;
-},{"./arrayLikeToArray":"node_modules/@babel/runtime/helpers/arrayLikeToArray.js"}],"node_modules/@babel/runtime/helpers/nonIterableSpread.js":[function(require,module,exports) {
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-module.exports = _nonIterableSpread;
-},{}],"node_modules/@babel/runtime/helpers/toConsumableArray.js":[function(require,module,exports) {
-var arrayWithoutHoles = require("./arrayWithoutHoles");
-
-var iterableToArray = require("./iterableToArray");
-
-var unsupportedIterableToArray = require("./unsupportedIterableToArray");
-
-var nonIterableSpread = require("./nonIterableSpread");
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
-},{"./arrayWithoutHoles":"node_modules/@babel/runtime/helpers/arrayWithoutHoles.js","./iterableToArray":"node_modules/@babel/runtime/helpers/iterableToArray.js","./unsupportedIterableToArray":"node_modules/@babel/runtime/helpers/unsupportedIterableToArray.js","./nonIterableSpread":"node_modules/@babel/runtime/helpers/nonIterableSpread.js"}],"node_modules/@babel/runtime/helpers/asyncToGenerator.js":[function(require,module,exports) {
+},{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/@babel/runtime/helpers/asyncToGenerator.js":[function(require,module,exports) {
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
   try {
     var info = gen[key](arg);
@@ -29240,7 +29240,308 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
-},{}],"node_modules/oboe/dist/oboe-browser.js":[function(require,module,exports) {
+},{}],"node_modules/idb/build/esm/wrap-idb-value.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.r = replaceTraps;
+exports.w = wrap;
+exports.u = exports.i = exports.a = void 0;
+
+const instanceOfAny = (object, constructors) => constructors.some(c => object instanceof c);
+
+exports.i = instanceOfAny;
+let idbProxyableTypes;
+let cursorAdvanceMethods; // This is a function to prevent it throwing up in node environments.
+
+function getIdbProxyableTypes() {
+  return idbProxyableTypes || (idbProxyableTypes = [IDBDatabase, IDBObjectStore, IDBIndex, IDBCursor, IDBTransaction]);
+} // This is a function to prevent it throwing up in node environments.
+
+
+function getCursorAdvanceMethods() {
+  return cursorAdvanceMethods || (cursorAdvanceMethods = [IDBCursor.prototype.advance, IDBCursor.prototype.continue, IDBCursor.prototype.continuePrimaryKey]);
+}
+
+const cursorRequestMap = new WeakMap();
+const transactionDoneMap = new WeakMap();
+const transactionStoreNamesMap = new WeakMap();
+const transformCache = new WeakMap();
+const reverseTransformCache = new WeakMap();
+exports.a = reverseTransformCache;
+
+function promisifyRequest(request) {
+  const promise = new Promise((resolve, reject) => {
+    const unlisten = () => {
+      request.removeEventListener('success', success);
+      request.removeEventListener('error', error);
+    };
+
+    const success = () => {
+      resolve(wrap(request.result));
+      unlisten();
+    };
+
+    const error = () => {
+      reject(request.error);
+      unlisten();
+    };
+
+    request.addEventListener('success', success);
+    request.addEventListener('error', error);
+  });
+  promise.then(value => {
+    // Since cursoring reuses the IDBRequest (*sigh*), we cache it for later retrieval
+    // (see wrapFunction).
+    if (value instanceof IDBCursor) {
+      cursorRequestMap.set(value, request);
+    } // Catching to avoid "Uncaught Promise exceptions"
+
+  }).catch(() => {}); // This mapping exists in reverseTransformCache but doesn't doesn't exist in transformCache. This
+  // is because we create many promises from a single IDBRequest.
+
+  reverseTransformCache.set(promise, request);
+  return promise;
+}
+
+function cacheDonePromiseForTransaction(tx) {
+  // Early bail if we've already created a done promise for this transaction.
+  if (transactionDoneMap.has(tx)) return;
+  const done = new Promise((resolve, reject) => {
+    const unlisten = () => {
+      tx.removeEventListener('complete', complete);
+      tx.removeEventListener('error', error);
+      tx.removeEventListener('abort', error);
+    };
+
+    const complete = () => {
+      resolve();
+      unlisten();
+    };
+
+    const error = () => {
+      reject(tx.error || new DOMException('AbortError', 'AbortError'));
+      unlisten();
+    };
+
+    tx.addEventListener('complete', complete);
+    tx.addEventListener('error', error);
+    tx.addEventListener('abort', error);
+  }); // Cache it for later retrieval.
+
+  transactionDoneMap.set(tx, done);
+}
+
+let idbProxyTraps = {
+  get(target, prop, receiver) {
+    if (target instanceof IDBTransaction) {
+      // Special handling for transaction.done.
+      if (prop === 'done') return transactionDoneMap.get(target); // Polyfill for objectStoreNames because of Edge.
+
+      if (prop === 'objectStoreNames') {
+        return target.objectStoreNames || transactionStoreNamesMap.get(target);
+      } // Make tx.store return the only store in the transaction, or undefined if there are many.
+
+
+      if (prop === 'store') {
+        return receiver.objectStoreNames[1] ? undefined : receiver.objectStore(receiver.objectStoreNames[0]);
+      }
+    } // Else transform whatever we get back.
+
+
+    return wrap(target[prop]);
+  },
+
+  set(target, prop, value) {
+    target[prop] = value;
+    return true;
+  },
+
+  has(target, prop) {
+    if (target instanceof IDBTransaction && (prop === 'done' || prop === 'store')) {
+      return true;
+    }
+
+    return prop in target;
+  }
+
+};
+
+function replaceTraps(callback) {
+  idbProxyTraps = callback(idbProxyTraps);
+}
+
+function wrapFunction(func) {
+  // Due to expected object equality (which is enforced by the caching in `wrap`), we
+  // only create one new func per func.
+  // Edge doesn't support objectStoreNames (booo), so we polyfill it here.
+  if (func === IDBDatabase.prototype.transaction && !('objectStoreNames' in IDBTransaction.prototype)) {
+    return function (storeNames, ...args) {
+      const tx = func.call(unwrap(this), storeNames, ...args);
+      transactionStoreNamesMap.set(tx, storeNames.sort ? storeNames.sort() : [storeNames]);
+      return wrap(tx);
+    };
+  } // Cursor methods are special, as the behaviour is a little more different to standard IDB. In
+  // IDB, you advance the cursor and wait for a new 'success' on the IDBRequest that gave you the
+  // cursor. It's kinda like a promise that can resolve with many values. That doesn't make sense
+  // with real promises, so each advance methods returns a new promise for the cursor object, or
+  // undefined if the end of the cursor has been reached.
+
+
+  if (getCursorAdvanceMethods().includes(func)) {
+    return function (...args) {
+      // Calling the original function with the proxy as 'this' causes ILLEGAL INVOCATION, so we use
+      // the original object.
+      func.apply(unwrap(this), args);
+      return wrap(cursorRequestMap.get(this));
+    };
+  }
+
+  return function (...args) {
+    // Calling the original function with the proxy as 'this' causes ILLEGAL INVOCATION, so we use
+    // the original object.
+    return wrap(func.apply(unwrap(this), args));
+  };
+}
+
+function transformCachableValue(value) {
+  if (typeof value === 'function') return wrapFunction(value); // This doesn't return, it just creates a 'done' promise for the transaction,
+  // which is later returned for transaction.done (see idbObjectHandler).
+
+  if (value instanceof IDBTransaction) cacheDonePromiseForTransaction(value);
+  if (instanceOfAny(value, getIdbProxyableTypes())) return new Proxy(value, idbProxyTraps); // Return the same value back if we're not going to transform it.
+
+  return value;
+}
+
+function wrap(value) {
+  // We sometimes generate multiple promises from a single IDBRequest (eg when cursoring), because
+  // IDB is weird and a single IDBRequest can yield many responses, so these can't be cached.
+  if (value instanceof IDBRequest) return promisifyRequest(value); // If we've already transformed this value before, reuse the transformed value.
+  // This is faster, but it also provides object equality.
+
+  if (transformCache.has(value)) return transformCache.get(value);
+  const newValue = transformCachableValue(value); // Not all types are transformed.
+  // These may be primitive types, so they can't be WeakMap keys.
+
+  if (newValue !== value) {
+    transformCache.set(value, newValue);
+    reverseTransformCache.set(newValue, value);
+  }
+
+  return newValue;
+}
+
+const unwrap = value => reverseTransformCache.get(value);
+
+exports.u = unwrap;
+},{}],"node_modules/idb/build/esm/index.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.deleteDB = deleteDB;
+exports.openDB = openDB;
+Object.defineProperty(exports, "unwrap", {
+  enumerable: true,
+  get: function () {
+    return _wrapIdbValue.u;
+  }
+});
+Object.defineProperty(exports, "wrap", {
+  enumerable: true,
+  get: function () {
+    return _wrapIdbValue.w;
+  }
+});
+
+var _wrapIdbValue = require("./wrap-idb-value.js");
+
+/**
+ * Open a database.
+ *
+ * @param name Name of the database.
+ * @param version Schema version.
+ * @param callbacks Additional callbacks.
+ */
+function openDB(name, version, {
+  blocked,
+  upgrade,
+  blocking,
+  terminated
+} = {}) {
+  const request = indexedDB.open(name, version);
+  const openPromise = (0, _wrapIdbValue.w)(request);
+
+  if (upgrade) {
+    request.addEventListener('upgradeneeded', event => {
+      upgrade((0, _wrapIdbValue.w)(request.result), event.oldVersion, event.newVersion, (0, _wrapIdbValue.w)(request.transaction));
+    });
+  }
+
+  if (blocked) request.addEventListener('blocked', () => blocked());
+  openPromise.then(db => {
+    if (terminated) db.addEventListener('close', () => terminated());
+    if (blocking) db.addEventListener('versionchange', () => blocking());
+  }).catch(() => {});
+  return openPromise;
+}
+/**
+ * Delete a database.
+ *
+ * @param name Name of the database.
+ */
+
+
+function deleteDB(name, {
+  blocked
+} = {}) {
+  const request = indexedDB.deleteDatabase(name);
+  if (blocked) request.addEventListener('blocked', () => blocked());
+  return (0, _wrapIdbValue.w)(request).then(() => undefined);
+}
+
+const readMethods = ['get', 'getKey', 'getAll', 'getAllKeys', 'count'];
+const writeMethods = ['put', 'add', 'delete', 'clear'];
+const cachedMethods = new Map();
+
+function getMethod(target, prop) {
+  if (!(target instanceof IDBDatabase && !(prop in target) && typeof prop === 'string')) {
+    return;
+  }
+
+  if (cachedMethods.get(prop)) return cachedMethods.get(prop);
+  const targetFuncName = prop.replace(/FromIndex$/, '');
+  const useIndex = prop !== targetFuncName;
+  const isWrite = writeMethods.includes(targetFuncName);
+
+  if ( // Bail if the target doesn't exist on the target. Eg, getAll isn't in Edge.
+  !(targetFuncName in (useIndex ? IDBIndex : IDBObjectStore).prototype) || !(isWrite || readMethods.includes(targetFuncName))) {
+    return;
+  }
+
+  const method = async function (storeName, ...args) {
+    // isWrite ? 'readwrite' : undefined gzipps better, but fails in Edge :(
+    const tx = this.transaction(storeName, isWrite ? 'readwrite' : 'readonly');
+    let target = tx.store;
+    if (useIndex) target = target.index(args.shift());
+    const returnVal = target[targetFuncName](...args);
+    if (isWrite) await tx.done;
+    return returnVal;
+  };
+
+  cachedMethods.set(prop, method);
+  return method;
+}
+
+(0, _wrapIdbValue.r)(oldTraps => ({ ...oldTraps,
+  get: (target, prop, receiver) => getMethod(target, prop) || oldTraps.get(target, prop, receiver),
+  has: (target, prop) => !!getMethod(target, prop) || oldTraps.has(target, prop)
+}));
+},{"./wrap-idb-value.js":"node_modules/idb/build/esm/wrap-idb-value.js"}],"node_modules/oboe/dist/oboe-browser.js":[function(require,module,exports) {
 var define;
 /*!
  * v2.1.4-104-gc868b3a
@@ -50274,9 +50575,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
-
 var _toConsumableArray2 = _interopRequireDefault(require("@babel/runtime/helpers/toConsumableArray"));
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
@@ -50295,6 +50596,8 @@ var _inherits2 = _interopRequireDefault(require("@babel/runtime/helpers/inherits
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
 var _react = _interopRequireDefault(require("react"));
+
+var _idb = require("idb");
 
 var _utils = require("../utils.js");
 
@@ -50329,14 +50632,90 @@ var App = /*#__PURE__*/function (_React$Component) {
       historyIds: [],
       latLngs: {},
       historySettings: {},
-      nextId: 0
+      nextId: 0,
+      doneLoading: false
     });
-    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "handleStartUploadNewHistory", /*#__PURE__*/function () {
-      var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(file) {
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "db", null);
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "cacheNewHistory", /*#__PURE__*/function () {
+      var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(historyId) {
+        var db, tx;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.next = 2;
+                return _this.db;
+
+              case 2:
+                db = _context.sent;
+                tx = db.transaction(["historyIds", "historySettings", "latLngs"], "readwrite");
+                tx.objectStore("historyIds").add(historyId, historyId);
+                tx.objectStore("historySettings").add(_this.state.historySettings[historyId], historyId);
+                tx.objectStore("latLngs").add(_this.state.latLngs[historyId], historyId);
+                _context.next = 9;
+                return tx.complete;
+
+              case 9:
+                console.log("Saved new history ".concat(historyId, " to database"));
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "cacheSettings", /*#__PURE__*/function () {
+      var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(historyId) {
+        var db, tx;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _this.db;
+
+              case 2:
+                db = _context2.sent;
+                tx = db.transaction("historySettings", "readwrite");
+                tx.objectStore("historySettings").put(_this.state.historySettings[historyId], historyId);
+                _context2.next = 7;
+                return tx.complete;
+
+              case 7:
+                console.log("Saved history settings for ".concat(historyId, " to database"));
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x2) {
+        return _ref2.apply(this, arguments);
+      };
+    }());
+    (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "handleStartUploadNewHistory", /*#__PURE__*/function () {
+      var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(file) {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                if (_this.state.doneLoading) {
+                  _context3.next = 2;
+                  break;
+                }
+
+                return _context3.abrupt("return");
+
+              case 2:
                 console.log("Uploading new file: ".concat(file.name)); // update UI to show we started upload
 
                 _this.setState(function (prevState, props) {
@@ -50358,16 +50737,16 @@ var App = /*#__PURE__*/function (_React$Component) {
                   };
                 });
 
-              case 2:
+              case 4:
               case "end":
-                return _context.stop();
+                return _context3.stop();
             }
           }
-        }, _callee);
+        }, _callee3);
       }));
 
-      return function (_x) {
-        return _ref.apply(this, arguments);
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
       };
     }());
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "handleFileUploadProgress", function (loadingProgress, historyId) {
@@ -50390,6 +50769,8 @@ var App = /*#__PURE__*/function (_React$Component) {
             label: label
           })))
         };
+      }, function () {
+        _this.cacheSettings(historyId);
       });
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "handleToggleHistoryShownOnMap", function (historyId) {
@@ -50400,6 +50781,8 @@ var App = /*#__PURE__*/function (_React$Component) {
             isShownOnMap: !prevState.historySettings[historyId].isShownOnMap
           })))
         };
+      }, function () {
+        _this.cacheSettings(historyId);
       });
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "handleHistoryColorChanged", function (color, historyId) {
@@ -50411,6 +50794,8 @@ var App = /*#__PURE__*/function (_React$Component) {
             color: color
           })))
         };
+      }, function () {
+        _this.cacheSettings(historyId);
       });
     });
     (0, _defineProperty2.default)((0, _assertThisInitialized2.default)(_this), "handleDoneUploadNewHistory", function (latLngs, historyId) {
@@ -50430,6 +50815,8 @@ var App = /*#__PURE__*/function (_React$Component) {
               isFirstShow: false
             })))
           };
+        }, function () {
+          return _this.cacheNewHistory(historyId);
         });
       });
     });
@@ -50446,6 +50833,135 @@ var App = /*#__PURE__*/function (_React$Component) {
   }
 
   (0, _createClass2.default)(App, [{
+    key: "componentDidMount",
+    value: function () {
+      var _componentDidMount = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5() {
+        var _this2 = this;
+
+        var db, tx, idStore, ids, settingsStore, latLngsStore, idData;
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                if ("indexedDB" in window) {
+                  _context5.next = 3;
+                  break;
+                }
+
+                console.log("Browser does not support IndexedDB, no caching will be done");
+                return _context5.abrupt("return");
+
+              case 3:
+                this.db = (0, _idb.openDB)("maps-history-visualizer", 3, {
+                  upgrade: function upgrade(db) {
+                    if (!db.objectStoreNames.contains("historyIds")) {
+                      db.createObjectStore("historyIds");
+                    }
+
+                    if (!db.objectStoreNames.contains("historySettings")) {
+                      db.createObjectStore("historySettings");
+                    }
+
+                    if (!db.objectStoreNames.contains("latLngs")) {
+                      db.createObjectStore("latLngs");
+                    }
+                  }
+                });
+                _context5.next = 6;
+                return this.db;
+
+              case 6:
+                db = _context5.sent;
+                tx = db.transaction(["historyIds", "historySettings", "latLngs"], "readonly");
+                idStore = tx.objectStore("historyIds");
+                _context5.next = 11;
+                return idStore.getAll();
+
+              case 11:
+                ids = _context5.sent;
+
+                if (!(ids.length === 0)) {
+                  _context5.next = 14;
+                  break;
+                }
+
+                return _context5.abrupt("return");
+
+              case 14:
+                this.setState({
+                  nextId: Math.max.apply(Math, (0, _toConsumableArray2.default)(ids)) + 1
+                });
+                settingsStore = tx.objectStore("historySettings");
+                latLngsStore = tx.objectStore("latLngs"); // start concurrent fetches
+
+                idData = ids.map(function (id) {
+                  return {
+                    id: id,
+                    settingsPromise: settingsStore.get(id),
+                    latLngsPromise: latLngsStore.get(id)
+                  };
+                });
+                _context5.next = 20;
+                return Promise.all(idData.map( /*#__PURE__*/function () {
+                  var _ref4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(_ref5) {
+                    var id, settingsPromise, latLngsPromise, settings, latLngs;
+                    return _regenerator.default.wrap(function _callee4$(_context4) {
+                      while (1) {
+                        switch (_context4.prev = _context4.next) {
+                          case 0:
+                            id = _ref5.id, settingsPromise = _ref5.settingsPromise, latLngsPromise = _ref5.latLngsPromise;
+                            _context4.next = 3;
+                            return settingsPromise;
+
+                          case 3:
+                            settings = _context4.sent;
+                            _context4.next = 6;
+                            return latLngsPromise;
+
+                          case 6:
+                            latLngs = _context4.sent;
+
+                            _this2.setState(function (prevState) {
+                              return {
+                                historyIds: [].concat((0, _toConsumableArray2.default)(prevState.historyIds), [id]),
+                                historySettings: _objectSpread({}, prevState.historySettings, (0, _defineProperty2.default)({}, id, settings)),
+                                latLngs: _objectSpread({}, prevState.latLngs, (0, _defineProperty2.default)({}, id, latLngs))
+                              };
+                            });
+
+                          case 8:
+                          case "end":
+                            return _context4.stop();
+                        }
+                      }
+                    }, _callee4);
+                  }));
+
+                  return function (_x4) {
+                    return _ref4.apply(this, arguments);
+                  };
+                }()));
+
+              case 20:
+                this.setState({
+                  doneLoading: true
+                });
+
+              case 21:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+
+      function componentDidMount() {
+        return _componentDidMount.apply(this, arguments);
+      }
+
+      return componentDidMount;
+    }()
+  }, {
     key: "render",
     value: function render() {
       var _this$state2 = this.state,
@@ -50480,7 +50996,7 @@ var App = /*#__PURE__*/function (_React$Component) {
 
 var _default = App;
 exports.default = _default;
-},{"@babel/runtime/regenerator":"node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/toConsumableArray":"node_modules/@babel/runtime/helpers/toConsumableArray.js","@babel/runtime/helpers/asyncToGenerator":"node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/classCallCheck":"node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/assertThisInitialized":"node_modules/@babel/runtime/helpers/assertThisInitialized.js","@babel/runtime/helpers/inherits":"node_modules/@babel/runtime/helpers/inherits.js","@babel/runtime/helpers/defineProperty":"node_modules/@babel/runtime/helpers/defineProperty.js","react":"node_modules/react/index.js","../utils.js":"src/utils.js","./MapContainer":"src/components/MapContainer.jsx","./Controls":"src/components/Controls.jsx"}],"src/index.js":[function(require,module,exports) {
+},{"@babel/runtime/helpers/toConsumableArray":"node_modules/@babel/runtime/helpers/toConsumableArray.js","@babel/runtime/regenerator":"node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/classCallCheck":"node_modules/@babel/runtime/helpers/classCallCheck.js","@babel/runtime/helpers/createClass":"node_modules/@babel/runtime/helpers/createClass.js","@babel/runtime/helpers/possibleConstructorReturn":"node_modules/@babel/runtime/helpers/possibleConstructorReturn.js","@babel/runtime/helpers/getPrototypeOf":"node_modules/@babel/runtime/helpers/getPrototypeOf.js","@babel/runtime/helpers/assertThisInitialized":"node_modules/@babel/runtime/helpers/assertThisInitialized.js","@babel/runtime/helpers/inherits":"node_modules/@babel/runtime/helpers/inherits.js","@babel/runtime/helpers/defineProperty":"node_modules/@babel/runtime/helpers/defineProperty.js","react":"node_modules/react/index.js","idb":"node_modules/idb/build/esm/index.js","../utils.js":"src/utils.js","./MapContainer":"src/components/MapContainer.jsx","./Controls":"src/components/Controls.jsx"}],"src/index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -50520,7 +51036,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60448" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50612" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
