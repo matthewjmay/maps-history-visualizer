@@ -20,6 +20,7 @@
     "autoprefixer": "^9.7.6",
     "gh-pages": "^2.2.0",
     "husky": "^4.2.3",
+    "less": "^3.11.1",
     "parcel-bundler": "^1.12.4",
     "prettier": "2.0.2",
     "pretty-quick": "^2.0.1"
@@ -38,6 +39,7 @@
   "dependencies": {
     "@babel/runtime": "^7.9.6",
     "classnames": "^2.2.6",
+    "idb": "^5.0.2",
     "leaflet": "^1.6.0",
     "oboe": "^2.1.5",
     "react": "^16.13.1",
